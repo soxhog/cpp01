@@ -3,8 +3,8 @@
 void	display_explanation(std::string zombie_name, std::string func_name)
 {
 	std::cout << "Creating a zombie named <" << zombie_name << ">";
-	if (func_name.length() == 0)
-		std::cout << " using " << func_name;
+	if (func_name.length() != 0)
+		std::cout << " using " << func_name << " function";
 	std::cout << std::endl;
 }
 
