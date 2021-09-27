@@ -2,13 +2,13 @@
 
 Zombie::Zombie()
 {
+	Zombie::set_name(std::string());
 	Zombie::announce();
-	_name = std::string();
 }
 
 Zombie::Zombie( std::string name )
 {
-	_name = name;
+	Zombie::set_name(name);
 	Zombie::announce();
 }
 
@@ -21,6 +21,11 @@ Zombie::~Zombie()
 std::string	Zombie::get_name()
 {
 	return (_name);
+}
+
+void		Zombie::set_name(std::string name)
+{
+	_name = name;
 }
 
 void	Zombie::display_name()
