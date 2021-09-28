@@ -3,13 +3,11 @@
 Zombie::Zombie()
 {
 	Zombie::set_name(std::string());
-	Zombie::announce();
 }
 
 Zombie::Zombie( std::string name )
 {
 	Zombie::set_name(name);
-	Zombie::announce();
 }
 
 Zombie::~Zombie()

@@ -21,14 +21,15 @@ int	main(void)
 
 	display_explanation(name1, "");
 	Zombie	zombie_alex(name1);
-	
+	zombie_alex.announce();
 	display_line();
+// ---------------------------------------------------------
 	display_explanation(name2, "newZombie");
 	Zombie	*zombie_bob = newZombie(name2);
-
+	zombie_bob->announce();
 	delete zombie_bob;
 	display_line();
-
+// ---------------------------------------------------------
 	display_explanation(name3, "randomChump");
 	randomChump(name3);
 	display_line();
