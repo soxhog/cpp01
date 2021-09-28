@@ -3,13 +3,11 @@
 Zombie::Zombie()
 {
 	Zombie::set_name(std::string());
-	Zombie::announce();
 }
 
 Zombie::Zombie( std::string name )
 {
 	Zombie::set_name(name);
-	Zombie::announce();
 }
 
 Zombie::~Zombie()
@@ -39,15 +37,17 @@ void	Zombie::announce()
 	std::cout << " BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-void 	randomChump( std::string name )
-{
-	Zombie	tmp_zombie(name);
-	tmp_zombie.display_name();
-	std::cout << " RandomChump has been called!!!" << std::endl;
-}
-
 Zombie* newZombie( std::string name )
 {
 	Zombie	*new_zombie = new Zombie(name);
 	return (new_zombie);
+}
+
+void 	randomChump( std::string name )
+{
+	Zombie	tmp_zombie(name);
+
+	tmp_zombie.announce();
+	tmp_zombie.display_name();
+	std::cout << " RandomChump has been called!!!" << std::endl;
 }
