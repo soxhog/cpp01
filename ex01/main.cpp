@@ -10,12 +10,13 @@ void	display_explanation(std::string zombie_name, std::string func_name)
 
 void	announce_all_zombies(Zombie *zombie_horde, int num_zombies)
 {
-	for (int i; i < num_zombies; i++)
+	for (int i = 0; i < num_zombies; i++)
 		zombie_horde[i].announce();
 }
 
 int	main(void)
 {
+	std::cout << "Start main" << std::endl;
 	std::string	name = "Alex";
 	int			num_zombies = 5;
 
@@ -23,5 +24,6 @@ int	main(void)
 	Zombie	*zombie_horde = zombieHorde(num_zombies, name);
 	announce_all_zombies(zombie_horde, num_zombies);
 	delete [] zombie_horde;
+	std::cout << "End main" << std::endl;
 	return (0);
 }

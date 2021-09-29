@@ -10,11 +10,6 @@ Zombie::Zombie( std::string name )
 	Zombie::set_name(name);
 }
 
-Zombie::Zombie( int N, std::string name )
-{
-	Zombie::set_name(name);
-}
-
 Zombie::~Zombie()
 {
 	Zombie::display_name();
