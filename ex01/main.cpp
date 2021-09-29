@@ -8,30 +8,20 @@ void	display_explanation(std::string zombie_name, std::string func_name)
 	std::cout << std::endl;
 }
 
-void	display_line(void)
+void	announce_all_zombies(Zombie *zombie_horde, int num_zombies)
 {
-	std::cout << "-----------------------------------------------------" << std::endl;
+	for (int i; i < num_zombies; i++)
+		zombie_horde[i].announce();
 }
 
 int	main(void)
 {
-	std::string	name1 = "Alex";
-	std::string	name2 = "Bob";
-	std::string	name3 = "Charlie";
+	std::string	name = "Alex";
+	int			num_zombies = 5;
 
-	display_explanation(name1, "");
-	Zombie	zombie_alex(name1);
-	zombie_alex.announce();
-	display_line();
-// ---------------------------------------------------------
-	display_explanation(name2, "newZombie");
-	Zombie	*zombie_bob = newZombie(name2);
-	zombie_bob->announce();
-	delete zombie_bob;
-	display_line();
-// ---------------------------------------------------------
-	display_explanation(name3, "randomChump");
-	randomChump(name3);
-	display_line();
+	display_explanation(name, "zombieHorde");
+	Zombie	*zombie_horde = zombieHorde(num_zombies, name);
+	announce_all_zombies(zombie_horde, num_zombies);
+	delete [] zombie_horde;
 	return (0);
 }
