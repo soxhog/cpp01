@@ -15,6 +15,7 @@ void	display_line(void)
 
 int	main(void)
 {
+	std::cout << "Start main" << std::endl;
 	std::string	name1 = "Alex";
 	std::string	name2 = "Bob";
 	std::string	name3 = "Charlie";
@@ -33,5 +34,6 @@ int	main(void)
 	display_explanation(name3, "randomChump");
 	randomChump(name3);
 	display_line();
+	std::cout << "End main" << std::endl;
 	return (0);
 }
