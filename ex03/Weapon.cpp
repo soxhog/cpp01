@@ -1,20 +1,15 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon( void )
+Weapon::Weapon( std::string type ): _type(type)
 {
-	setType(std::string());
-}
-
-Weapon::Weapon( std::string type )
-{
-	setType(std::string(type));
+	// setType(type);
 }
 
 Weapon::~Weapon()
 {
 }
 
-std::string	Weapon::getType( void ) const
+const std::string	Weapon::getType( void ) const
 {
 	if (_type.empty())
 		return ("No Weapon");
@@ -22,8 +17,16 @@ std::string	Weapon::getType( void ) const
 		return (_type);
 }
 
-void		Weapon::setType(std::string type)
+bool		Weapon::setType( const std::string& type )
 {
-	if (!type.empty())
+	if (type.empty())
+	{
+		std::cout << "Empy Weapon does NOT Accepted!" << std::endl;
+		return (false);
+	}
+	else
+	{
 		_type = type;
+		return (true);
+	}
 }
