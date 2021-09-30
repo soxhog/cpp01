@@ -16,7 +16,10 @@ Weapon::~Weapon()
 
 std::string	Weapon::getType( void ) const
 {
-	return (_type);
+	if (_type.empty())
+		return ("No Weapon");
+	else
+		return (_type);
 }
 
 void		Weapon::setType(std::string type)

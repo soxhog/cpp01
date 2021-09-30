@@ -1,5 +1,9 @@
 # include <string>
 # include <iostream>
+# include "HumanA.hpp"
+# include "HumanB.hpp"
+# include "Weapon.hpp"
+
 
 void	display_test_line(std::string test_name)
 {
@@ -9,19 +13,20 @@ void	display_test_line(std::string test_name)
 int	main(void)
 {
 	std::cout << "Start main" << std::endl;
-	std::string	original_str = "HI THIS IS BRAIN";
-	std::string	*stringPTR = &original_str;
-	std::string	&stringREF = original_str;
 
-	display_test_line("Address");
-	std::cout << "original_str Address: " << &original_str << std::endl;
-	std::cout << "stringPTR Address   : " << &(*stringPTR) << std::endl;
-	std::cout << "stringREF Address   : " << &stringREF << std::endl;
+	std::string	type1 = "Gun";
+	std::string	type2 = "Katana";
+	std::string	name1 = "Jack";
+	std::string	name2 = "Ryoma";
+	Weapon		wepon1(type1);
+	Weapon		wepon2(type2);
+	HumanA		Jack_A(name1, wepon1);
+	HumanB		Ryoma_B(name2);
 
-	display_test_line("Display string");
-	std::cout << "original_str: " << original_str << std::endl;
-	std::cout << "stringPTR   : " << *stringPTR << std::endl;
-	std::cout << "stringREF   : " << stringREF << std::endl;
+	Jack_A.attack();
+	Ryoma_B.attack();
+	Ryoma_B.setWeapon(wepon2);
+	Ryoma_B.attack();
 	std::cout << "End main" << std::endl;
 	return (0);
 }
