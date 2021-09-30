@@ -22,8 +22,16 @@ std::string	HumanB::getName( void ) const
 
 bool		HumanB::setName(std::string name)
 {
-	if (!name.empty())
+	if (name.empty())
+	{
+		std::cout << "Empty Name does NOT Accepted!!" << std::endl;
+		return (false);
+	}
+	else
+	{
 		_name = name;
+		return (true);	
+	}
 }
 
 Weapon	HumanB::getWeapon( void ) const
