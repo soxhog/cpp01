@@ -13,11 +13,11 @@ private:
 public:
 	HumanA( std::string name, Weapon &weapon );
 	~HumanA();
-	std::string	getName( void ) const;
-	void		setName( std::string name );
-	Weapon	getWeapon( void ) const;
-	void		setWeapon( Weapon &weapon );
-	void		attack( void ) const;
+	const std::string	getName( void ) const;
+	void				setName( std::string name );
+	const Weapon		getWeapon( void ) const;
+	void				setWeapon( Weapon &weapon );
+	void				attack( void ) const;
 };
 
 #endif /* HUMANA_HPP */

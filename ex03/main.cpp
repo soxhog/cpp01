@@ -24,7 +24,7 @@ int	main(void)
 	HumanB		Ryoma_B(name2);
 
 	Jack_A.attack();
-	// Ryoma_B.attack();
+	Ryoma_B.attack();
 	Ryoma_B.setWeapon(wepon2);
 	Ryoma_B.attack();
 	std::cout << "End main" << std::endl;

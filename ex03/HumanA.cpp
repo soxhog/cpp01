@@ -2,15 +2,13 @@
 
 HumanA::HumanA( std::string name, Weapon &weapon ): _name(name), _weapon(weapon)
 {
-	// setName(name);
-	// setWeapon(weapon);
 }
 
 HumanA::~HumanA()
 {
 }
 
-std::string	HumanA::getName( void ) const
+const std::string	HumanA::getName( void ) const
 {
 	return (_name);
 }
@@ -21,7 +19,7 @@ void		HumanA::setName(std::string name)
 		_name = name;
 }
 
-Weapon	HumanA::getWeapon( void ) const
+const Weapon	HumanA::getWeapon( void ) const
 {
 	return (_weapon);
 }

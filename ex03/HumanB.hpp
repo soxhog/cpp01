@@ -12,13 +12,12 @@ private:
 	Weapon		*_weapon;
 public:
 	HumanB( std::string name );
-	HumanB( std::string name, Weapon &weapon );
-	~HumanB();
-	std::string	getName( void ) const;
-	bool		setName( std::string name );
-	Weapon	getWeapon( void ) const;
-	bool		setWeapon( Weapon &weapon );
-	void		attack( void ) const;
+	~HumanB( void );
+	const std::string&	getName( void ) const;
+	bool				setName( std::string name );
+	const Weapon&		getWeapon( void ) const;
+	void				setWeapon( Weapon &weapon );
+	void				attack( void ) const;
 };
 
 #endif /* HUMANB_HPP */
