@@ -1,6 +1,6 @@
 CXX			= clang++
 CXXFLAGS	= -Wall -Wextra -Werror -I.
-SRCS		= main.cpp
+SRCS		= main.cpp Replace.cpp putErr.cpp
 OBJS		= $(SRCS:.cpp=.o)
 NAME		= replace
 

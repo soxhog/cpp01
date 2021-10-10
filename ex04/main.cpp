@@ -6,27 +6,12 @@
 /*   By: skagiya <skagiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 16:48:44 by skagiya           #+#    #+#             */
-/*   Updated: 2021/10/09 19:17:07 by skagiya          ###   ########.fr       */
+/*   Updated: 2021/10/10 21:54:41 by skagiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Replace.hpp"
-
-void	put_err(int err_num)
-{
-	std::cout << "Error" << std::endl;
-	switch (err_num)
-	{
-		case ERR_ARGS_NUM:
-			std::cout << "Wrong Args Numbers" << std::endl;
-			break;
-		case ERR_S_EMPTY:
-			std::cout << "s1 or s2 is Empty" << std::endl;
-			break;
-		default:
-			break;
-	}
-}
+# include "putErr.hpp"
 
 bool	is_empty(char *s)
 {
@@ -39,15 +24,24 @@ bool	is_empty(char *s)
 
 int	main(int argc, char **argv)
 {
+	Replace		replace;
+	std::string	filename(argv[FILENAME_INDEX]);
+	std::string	replaceStr(argv[REPLACE_STR_INDEX]);
+	std::string	replacement(argv[REPLACEMENT_INDEX]);
+
 	if (argc != MUST_ARGS_NUM)
 	{
-		put_err(ERR_ARGS_NUM);
+		putErr(ERR_ARGS_NUM);
 		return (ERROR);
 	}
-	if (is_empty(argv[S1_INDEX]) || is_empty(argv[S2_INDEX]))
-	{
-		put_err(ERR_S_EMPTY);
+	if (!replace.setFileName(filename))
 		return (ERROR);
-	}
+	if (!replace.openFile())
+		return (ERROR);
+	if (!replace.setStrOfFileContents())
+		return (ERROR);
+	if (!replace.replace(replaceStr, replacement))
+		return (ERROR);
+	replace.outputToFile();
 	return (0);
 }
