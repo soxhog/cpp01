@@ -6,7 +6,7 @@
 /*   By: skagiya <skagiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:15:11 by skagiya           #+#    #+#             */
-/*   Updated: 2021/10/10 21:53:27 by skagiya          ###   ########.fr       */
+/*   Updated: 2021/10/11 14:18:20 by skagiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,22 @@ bool				Replace::setReplacedStr( std::string &replacedStr )
 
 bool				Replace::setStrOfFileContents( void )
 {
+	std::string	strOfFileContents;
+	std::string	readingBuf;
+
 	if (!_inputFileStream)
 	{
 		putErr(ERR_INPUTFILESTREAM);
 		return (false);
 	}
-	while (std::getline(_inputFileStream, _strOfFileContents))
-		;
-	std::cout << "setStrOfFileContents: " << _strOfFileContents << std::endl;
+	while (std::getline(_inputFileStream, readingBuf))
+	{
+		strOfFileContents += readingBuf;
+		if (!_inputFileStream.eof())
+			strOfFileContents += "\n";
+	}
 	_inputFileStream.close();
+	_strOfFileContents = strOfFileContents;
 	return (true);
 }
 
@@ -117,15 +124,14 @@ bool				Replace::setStrOfOutput( std::string &strOutput )
 
 bool				Replace::openFile( void )
 {
-	std::ifstream	inputFileStream;
+	std::string		filename = getFileName();
 
-	inputFileStream.open(getFileName());
-	if (inputFileStream.fail())
+	_inputFileStream.open(filename);
+	if (_inputFileStream.fail())
 	{
 		putErr(ERR_OPEN);
 		return (false);
 	}
-	
 	return (true);
 }
 
