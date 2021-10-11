@@ -1,12 +1,11 @@
 #ifndef PUTERR_HPP
 #define PUTERR_HPP
 
-// INCLUDES
-
 # include <string>
 # include <iostream>
 
-// ERROR 
+#define RESET ("\033[0m")
+#define RED ("\033[31m")
 
 typedef	enum
 {

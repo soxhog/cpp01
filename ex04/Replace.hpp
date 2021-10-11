@@ -1,14 +1,10 @@
 #ifndef REPLACE_HPP
 #define REPLACE_HPP
 
-// INCLUDES
-
 # include <string>
 # include <iostream>
 # include <fstream>
 # include "putErr.hpp"
-
-// ARGS
 
 typedef enum
 {

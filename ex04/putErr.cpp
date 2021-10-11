@@ -6,7 +6,7 @@
 /*   By: skagiya <skagiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:39:33 by skagiya           #+#    #+#             */
-/*   Updated: 2021/10/10 20:02:30 by skagiya          ###   ########.fr       */
+/*   Updated: 2021/10/11 19:08:04 by skagiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	putErr(int errNum)
 {
+	std::cout << RED << std::flush;
 	std::cout << "Error" << std::endl;
 	switch (errNum)
 	{
@@ -41,4 +42,5 @@ void	putErr(int errNum)
 		default:
 			break;
 	}
+	std::cout << RESET;
 }
