@@ -6,7 +6,7 @@
 /*   By: skagiya <skagiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/10 14:15:11 by skagiya           #+#    #+#             */
-/*   Updated: 2021/10/11 14:18:20 by skagiya          ###   ########.fr       */
+/*   Updated: 2021/10/11 18:33:58 by skagiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ Replace::Replace( void )
 Replace::~Replace( void )
 {
 }
+  /***--------------------------------------***/
+ /**				<Getter>				**/
+/*------------------------------------------*/
 
 const std::string	Replace::getFileName( void ) const
 {
@@ -40,15 +43,9 @@ const std::string	Replace::getStrOfOutput( void ) const
 	return (_strOfOutput);
 }
 
-// const std::string	Replace::getReplaceStr( void ) const
-// {
-// 	return (_replaceStr);
-// }
-
-// const std::string	Replace::getReplacement( void ) const
-// {
-// 	return (_replacement);
-// }
+  /***--------------------------------------***/
+ /**				<Setter>				**/
+/*------------------------------------------*/
 
 bool				Replace::setFileName( std::string &fileName )
 {
@@ -67,25 +64,19 @@ bool				Replace::setReplacedStr( std::string &replacedStr )
 	return (true);
 }
 
-// bool				Replace::setInputFileStream( std::ifstream &inputFileStream )
-// {
-// 	_inputFileStream = inputFileStream;
-// 	return (true);
-// }
-
 bool				Replace::setStrOfFileContents( void )
 {
 	std::string	strOfFileContents;
-	std::string	readingBuf;
+	std::string	readingLineBuffer;
 
 	if (!_inputFileStream)
 	{
 		putErr(ERR_INPUTFILESTREAM);
 		return (false);
 	}
-	while (std::getline(_inputFileStream, readingBuf))
+	while (std::getline(_inputFileStream, readingLineBuffer))
 	{
-		strOfFileContents += readingBuf;
+		strOfFileContents += readingLineBuffer;
 		if (!_inputFileStream.eof())
 			strOfFileContents += "\n";
 	}
@@ -100,27 +91,20 @@ bool				Replace::setStrOfOutput( std::string &strOutput )
 	return (true);
 }
 
-// bool				Replace::setReplaceStr( std::string &replaceStr )
-// {
-// 	if (replaceStr.empty())
-// 	{
-// 		putErr(ERR_REPLACE_STR_EMPTY);
-// 		return (false);
-// 	}
-// 	_replaceStr = replaceStr;
-// 	return (true);
-// }
+  /***--------------------------------------***/
+ /**				<SetUpFile>				**/
+/*------------------------------------------*/
 
-// bool				Replace::setReplacement( std::string &replacement )
-// {
-// 	if (replacement.empty())
-// 	{
-// 		putErr(ERR_REPLACEMENT_EMPTY);
-// 		return (false);
-// 	}
-// 	_replacement = replacement;
-// 	return (true);
-// }
+bool				Replace::setUpFile( std::string &filename )
+{
+	if (!setFileName(filename))
+		return (false);
+	if (!openFile())
+		return (false);
+	if (!setStrOfFileContents())
+		return (false);
+	return (true);
+}
 
 bool				Replace::openFile( void )
 {
@@ -134,6 +118,10 @@ bool				Replace::openFile( void )
 	}
 	return (true);
 }
+
+  /***--------------------------------------***/
+ /**				<Replace>				**/
+/*------------------------------------------*/
 
 static bool			is_empty(std::string &str)
 {
@@ -151,7 +139,6 @@ bool				Replace::replace( std::string replaceStr, std::string replacement )
 		return (false);
 	}
 	tmpStrOutput = getStrOfFileContents();
-	std::cout << tmpStrOutput << std::endl;
 	for (size_t len = 0; len < tmpStrOutput.length(); len++)
 	{
 		if (tmpStrOutput.compare(len, replaceLen, replaceStr) == SAME_STR)
@@ -163,6 +150,10 @@ bool				Replace::replace( std::string replaceStr, std::string replacement )
 	setStrOfOutput(tmpStrOutput);
 	return (true);
 }
+
+  /***--------------------------------------***/
+ /**			<OutputToFile>				**/
+/*------------------------------------------*/
 
 bool				Replace::changeFileExtension( void )
 {
@@ -194,10 +185,15 @@ bool				Replace::outputToFile( void )
 	std::ofstream	outputFile;
 	std::string		strOfOutput = getStrOfOutput();
 
-	changeFileExtension();
+	if (!changeFileExtension())
+		return (false);
 	outputFilename = getFileName();
 	outputFile.open(outputFilename, std::ios::out);
-	std::cout << strOfOutput << std::endl;
+	if (outputFile.fail())
+	{
+		putErr(ERR_OPEN);
+		return (false);
+	}
 	outputFile << strOfOutput;
 	outputFile.close();
 	return (true);

@@ -27,30 +27,43 @@ private:
 	std::string		_replacedStr;
 	std::string		_strOfFileContents;
 	std::string		_strOfOutput;
-	// std::string		_replaceStr;
-	// std::string		_replacement;
 	std::ifstream	_inputFileStream;
 public:
 	Replace( void );
 	~Replace( void );
+
+  /***--------------------------------------***/
+ /**				<Getter>				**/
+/*------------------------------------------*/
 	const std::string	getFileName( void ) const;
 	const std::string	getReplacedStr( void ) const;
 	const std::string	getStrOfFileContents( void ) const;
 	const std::string	getStrOfOutput( void ) const;
-	// const std::ifstream	getInputFileStream( void ) const;
-	// const std::string	getReplaceStr( void ) const;
-	// const std::string	getReplacement( void ) const;
+
+  /***--------------------------------------***/
+ /**				<Setter>				**/
+/*------------------------------------------*/
 	bool				setFileName( std::string &fileName );
 	bool				setReplacedStr( std::string &replacedStr );
 	bool				setStrOfFileContents( void );
 	bool				setStrOfOutput( std::string &strOutput );
-	// bool				setInputFileStream( std::ifstream &inputFileStream );
-	// bool				setReplaceStr( std::string &replaceStr );
-	// bool				setReplacement( std::string &replacement );
-	bool				changeFileExtension( void );
+
+  /***--------------------------------------***/
+ /**				<SetUpFile>				**/
+/*------------------------------------------*/
+	bool				setUpFile( std::string &filename );
 	bool				openFile( void );
-	bool				outputToFile( void );
+
+  /***--------------------------------------***/
+ /**				<Replace>				**/
+/*------------------------------------------*/
 	bool				replace( std::string replaceStr, std::string replacement );
+
+  /***--------------------------------------***/
+ /**			<OutputToFile>				**/
+/*------------------------------------------*/
+	bool				changeFileExtension( void );
+	bool				outputToFile( void );
 };
 
 #endif /* REPLACE_HPP */
