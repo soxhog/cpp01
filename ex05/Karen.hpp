@@ -6,7 +6,7 @@
 /*   By: skagiya <skagiya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:12:20 by skagiya           #+#    #+#             */
-/*   Updated: 2021/10/11 21:25:40 by skagiya          ###   ########.fr       */
+/*   Updated: 2021/10/12 18:00:52 by skagiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include <string>
 # include <iostream>
+
+typedef enum
+{
+	DEBUG_INDEX,
+	INFO_INDEX,
+	WARNING_INDEX,
+	ERR_INDEX,
+}		e_index;
 
 class Karen
 {
