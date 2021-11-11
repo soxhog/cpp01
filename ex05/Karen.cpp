@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Karen.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skagiya <skagiya@student.42.fr>            +#+  +:+       +#+        */
+/*   By: skagiya <skagiya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 21:24:30 by skagiya           #+#    #+#             */
-/*   Updated: 2021/10/12 19:56:51 by skagiya          ###   ########.fr       */
+/*   Updated: 2021/11/11 14:50:34 by skagiya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,33 @@
 
 Karen::Karen( void )
 {
+	funcPtr[ERR_INDEX] = &Karen::error;
+	funcPtr[DEBUG_INDEX] = &Karen::debug;
+	funcPtr[INFO_INDEX] = &Karen::info;
+	funcPtr[WARNING_INDEX] = &Karen::warning;
 }
 
 Karen::~Karen( void )
 {
 }
 
-static bool	isSameStr(std::string &complainStr, std::string &levelStr)
-{
-	return (complainStr == levelStr);
-}
+// static bool	isSameStr(std::string &complainStr, std::string &levelStr)
+// {
+// 	return (complainStr == levelStr);
+// }
 
 void	Karen::complain( std::string levelStr )
 {
-	void		(Karen::*outputComplain)(void);
-	void		(Karen::*funcPtr[])( void ) = 
-	{
-		&Karen::debug,
-		&Karen::info,
-		&Karen::warning,
-		&Karen::error
-	};
-	std::string	complainArry[] = 
-	{
-		"debug",
-		"info",
-		"warning",
-		"error"
-	};
-
-	for (int i = DEBUG_INDEX; i <= ERR_INDEX; i++)
-	{
-		outputComplain = funcPtr[i];
-		if (isSameStr(complainArry[i], levelStr))
-			(this->*outputComplain)();
-	}
+	int		pos = ("debug" == levelStr) * 1 + \
+					("info" == levelStr) * 2 + \
+					("warning" == levelStr) * 3;
+	(this->*funcPtr[pos])();
+	// for (int i = DEBUG_INDEX; i <= ERR_INDEX; i++)
+	// {
+	// 	outputComplain = funcPtr[i];
+	// 	if (isSameStr(complainArry[i], levelStr))
+	// 		(this->*outputComplain)();
+	// }
 }
 
 void	Karen::debug( void )
